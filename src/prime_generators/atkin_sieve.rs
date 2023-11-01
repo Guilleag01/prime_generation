@@ -18,7 +18,7 @@ impl PrimeGenerator for AtkinSieve {
             for y in 1..=(limit_sqrt as usize) {
                 let s1 = 4 * (x * x) + (y * y);
                 let s2 = 3 * (x * x) + (y * y);
-                let s3 = 3 * (x * x) - (y * y);
+                let s3 = (3 * (x * x)).wrapping_sub(y * y);
 
                 if s1 > limit && s2 > limit && (x > y && s3 > limit) {
                     continue 'outer;
