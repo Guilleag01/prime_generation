@@ -3,6 +3,7 @@ pub mod dynamic;
 pub mod erastosthenes_sieve;
 pub mod one_line;
 pub mod sundaram_sieve;
+pub mod wilson_theorem;
 
 // use std::marker::Sized;
 

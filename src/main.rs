@@ -1,4 +1,8 @@
-use std::{cmp::Ordering, time::Instant};
+use std::{
+    cmp::Ordering,
+    io::{self, Write},
+    time::Instant,
+};
 
 use prime_generation::prime_generators::{
     atkin_sieve::AtkinSieve, dynamic::Dynamic, erastosthenes_sieve::ErastosthenesSieve,
@@ -6,7 +10,7 @@ use prime_generation::prime_generators::{
 };
 
 fn main() {
-    let limit = 1000000;
+    let limit = 10000;
 
     println!("Starting with limit: {}\n", limit);
 
@@ -16,10 +20,12 @@ fn main() {
         (Box::new(ErastosthenesSieve::new()), 0.0),
         (Box::new(OneLine::new()), 0.0),
         (Box::new(SundaramSieve::new()), 0.0),
+        // (Box::new(WilsonTheorem::new()), 0.0), TOO SLOW
     ];
 
     for a in &mut algorithms {
         print!("Running {}...", a.0.get_name());
+        io::stdout().flush().unwrap();
         let t0 = Instant::now();
         a.0.get_primes(limit);
         a.1 = t0.elapsed().as_secs_f32();
@@ -47,6 +53,7 @@ fn main() {
         text.push_str(a.1.to_string().as_str());
         println!("{}s", text);
     }
+    // println!("{:?}", WilsonTheorem::new().get_primes(limit));
 }
 
 // 1.5
