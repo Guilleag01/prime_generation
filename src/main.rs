@@ -10,7 +10,7 @@ use prime_generation::prime_generators::{
 };
 
 fn main() {
-    let limit = 10000;
+    let limit = 10000000;
 
     println!("Starting with limit: {}\n", limit);
 

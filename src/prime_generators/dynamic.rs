@@ -11,6 +11,9 @@ impl PrimeGenerator for Dynamic {
         let mut found = vec![2];
         'outer: for i in 3..limit {
             for f in &found {
+                if *f as f32 > f32::sqrt(i as f32) {
+                    continue 'outer;
+                }
                 if i % f == 0 {
                     continue 'outer;
                 }
